@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>gjl.datepicker</title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <!--script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"-->
+    </script>
+
+    <link rel="stylesheet" href="/lib/gj.3.0/vendor/flatpickr.css">
+    <script src="/lib/gj.3.0/vendor/flatpickr.js"></script>
+
+    <script src="/lib/gj.3.0/gjl/gjl.datepicker.js"></script>
+
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        
+        #span {
+            border-style: solid;
+            border-width: 0.05px;
+            padding: 7px;
+            background-color: lightgrey;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h2>gjl.datepicker</h2>
+        </div>
+    </div>
+    <div class="form-group input-group-sm">
+        <label for="usr">Name:</label>
+        <input size="10" type="text" class="form-control" id="usr">
+        <button id="hei">HEI HEI</button> <br/> en span her : <span id="span">no date selected</span>
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        gjl.datepicker.start('span', {
+            minDate: "today",
+            maxDate: new Date().fp_incr(14), // 14 days from now
+            onChange: [function(selectedDates, dateStr, instance) {
+                    var el = document.getElementById('span');
+                    el.innerHTML = dateStr;
+                },
+                function() {
+                    console.error('onChange')
+                }
+            ]
+        });
+        gjl.datepicker.start('usr');
+        gjl.datepicker.start('hei')
+    });
+</script>
+
+</html>
