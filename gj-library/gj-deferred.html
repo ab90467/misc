@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sample Site</title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="/js/deferred.js"></script>
+    <style>
+        body {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Frontpage</h1>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    function test(param, time) {
+        var def = new Deferred();
+        setTimeout(function() {
+            //console.error('test() returns resolve() with value : ', param);
+            def.reject(param);
+        }, time || 3000);
+        //return 'jalla';
+        return def;
+    }
+
+    function doneDunc(param, time) {
+        var def = new Deferred();
+        setTimeout(function() {
+            //console.error('test() returns resolve() with value : ', param);
+            def.resolve(param);
+        }, time || 3000);
+        //return 'jalla';
+        return def;
+    }
+
+    var ret = test('juhuu');
+    ret.done(function(input) {
+        console.error('done  1 ', input);
+    });
+    ret.done(function(input) {
+        console.error('done 2 ', input);
+    });
+    ret.fail(function(input) {
+        console.error('FAIL  ', input);
+    });
+
+
+    var ret2 = doneDunc('juhuu 22', 1000);
+    ret2.done(function(input) {
+        console.error('done  222 ', input);
+    });
+</script>
+
+</html>
