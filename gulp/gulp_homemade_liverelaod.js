@@ -21,8 +21,7 @@ gulp.task('io:livereload', function() {
 
 // gulpfile.js :: example on when reload demopage
 gulp.task('build-js', ['lint', 'clean-js'], function() {
-  ....
-  .pipe(gulp.dest(path.join(config.distRoot, config.dist.jsPath))).on('error', gutil.log).on('end', function() {
+  pipe(gulp.dest(path.join(config.distRoot, config.dist.jsPath))).on('error', gutil.log).on('end', function() {
         if (io && io.local) {
            gutil.log('reload demopage')
            io.local.emit('reload', 'page');
